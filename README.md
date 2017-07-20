@@ -1,4 +1,5 @@
 # spring-embedded-redis-server
+依赖 Spring 容器的 Redis 内嵌小型服务器，仅做调试或测试时使用。 
 ## MAVEN 依赖设置
 ### 本地安装
 ```
