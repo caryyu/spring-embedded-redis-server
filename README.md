@@ -14,7 +14,7 @@ mvn install
 ```
 <dependency>
     <groupId>com.github.caryyu</groupId>
-    <artifactId>v</artifactId>
+    <artifactId>spring-embedded-redis-server</artifactId>
     <version>1.0</version>
 </dependency>
 
