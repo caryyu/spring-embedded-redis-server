@@ -28,17 +28,18 @@ mvn install
 ```
 
 ## Spring 核心配置 / Spring Configuration
-### 方式一
+我们有三种方式可以配置应用. We have 3 ways to configure this.
+### 方式一 / Way 1
 直接配置此项目的包名前缀进行自动扫描。
 ```
 <context:component-scan base-package="com.github.caryyu,xxxx" />
 ```
-### 方式二
+### 方式二 / Way 2
 配置 XML 文件。
 ```
 <beans:bean class="com.github.caryyu.spring.embedded.redisserver.RedisServerConfiguration" id="redisServerConfiguration" />
 ```
-### 方式二
+### 方式二 / Way 3
 Spring Boot 注解配置
 ```
 @Bean
