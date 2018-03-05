@@ -4,7 +4,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import redis.embedded.RedisServer;
 
 import java.io.IOException;
@@ -15,12 +19,38 @@ import java.io.IOException;
  * @author cary
  * @date 2017/7/20
  */
-@Configuration
-public class RedisServerConfiguration implements DisposableBean {
+@Component
+public class RedisServerConfiguration implements DisposableBean, EnvironmentAware, InitializingBean {
     private Log log = LogFactory.getLog(this.getClass());
     private RedisServer redisServer;
+    private Environment environment;
 
-    public RedisServerConfiguration(){
+    /**
+     * 通过环境属性(global.redis.port)进行控制
+     * @return 端口号
+     */
+    public int getPort() {
+        return environment.getProperty("global.redis.port",Integer.class,6379);
+    }
+
+    /**
+     * 通过环境属性(global.redis.embedded)进行控制
+     * @return TRUE/FALSE
+     */
+    private boolean isEmbedded() {
+        return environment.getProperty("global.redis.embedded",Boolean.class,false);
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        if(redisServer != null) {
+            redisServer.stop();
+            redisServer = null;
+        }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
         // 如果Redis嵌入式服务器配置是关闭的则直接跳出
         if (!isEmbedded()) {
             return;
@@ -39,32 +69,8 @@ public class RedisServerConfiguration implements DisposableBean {
         }
     }
 
-    /**
-     * 通过环境属性(global.redis.port)进行控制
-     * @return 端口号
-     */
-    public int getPort() {
-        Object rawPort = System.getProperties().get("global.redis.port");
-        int port = 6379;
-        port = rawPort == null ? port : Integer.parseInt(rawPort.toString());
-        return port;
-    }
-
-    /**
-     * 通过环境属性(global.redis.embedded)进行控制
-     * @return TRUE/FALSE
-     */
-    private boolean isEmbedded() {
-        Object rawEmbedded = System.getProperties().get("global.redis.embedded");
-        Boolean embedded = rawEmbedded == null ? false : Boolean.parseBoolean(rawEmbedded.toString());
-        return embedded;
-    }
-
     @Override
-    public void destroy() throws Exception {
-        if(redisServer != null) {
-            redisServer.stop();
-            redisServer = null;
-        }
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 }
