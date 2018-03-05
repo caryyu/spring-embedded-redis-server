@@ -47,16 +47,28 @@ public RedisServerConfiguration redisServerConfiguration(){
 }
 ```
 ## 使用方式 / Usage
-* global.redis.port - 设置内嵌服务端口号
-* global.redis.embedded - 设置内嵌服务是否开启,true表示开启,false表示关闭。
-### JVM 环境变量 &
-使用VM属性进行设置开启内嵌服务，e.g.(-Dglobal.redis.embedded=true）。
-### 设置 application.properties 文件
+* global.redis.port - 设置内嵌服务端口号. this is the embedded port for server listening.
+* global.redis.embedded - 设置内嵌服务是否开启,true表示开启,false表示关闭. this is the switch to check whether or not it is ON/OFF.
+### JVM 环境变量 / JVM Environment Variables
+使用VM属性进行设置开启内嵌服务. We can pass this by JVM environment variables.  
+  
+简单的 Java 程序. Simple java program
+```
+java -Dglobal.redis.embedded=true
+```
+
+在 Tomcat 中的 catalina.sh 或 catalina.bat 中设置. On Tomcat under catalina.sh or catalina.bat
+```
+set JAVA_OPTS="-Dglobal.redis.embedded=true"
+```
+
+e.g.(-Dglobal.redis.embedded=true）。
+### 设置 application.properties / Setting application.properties
 ```
 global.redis.port=6379
 global.redis.embedded=true    
 ```
-### 设置 application.yml 文件
+### 设置 application.yml / Setting application.tml 
 ```
 global:
     redis:
