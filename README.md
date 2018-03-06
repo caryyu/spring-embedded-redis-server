@@ -6,6 +6,7 @@
 * JDK 1.6 +
 
 ## 本地安装 / Local Installation
+> 注意：这一步是可选的，可以直接从中央仓库获取依赖；Notice: this step is optional, Can be able to fetch from Central.
 ```
 git clone https://github.com/caryyu/spring-embedded-redis-server
 mvn install
