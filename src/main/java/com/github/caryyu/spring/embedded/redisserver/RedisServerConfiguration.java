@@ -14,10 +14,11 @@ import redis.embedded.RedisServer;
 import java.io.IOException;
 
 /**
- * <p>核心配置信息,一定要让Spring进行扫描到才可以生效</p>
- * <p>主要通过系统环境属性进行控制.</p>
+ * 核心配置信息,一定要让Spring进行扫描到才可以生效,
+ * 主要通过系统环境属性进行控制.
+ *
  * @author cary
- * @date 2017/7/20
+ * @since Spring 3.1
  */
 @Component
 public class RedisServerConfiguration implements DisposableBean, EnvironmentAware, InitializingBean {
