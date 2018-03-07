@@ -9,7 +9,7 @@
     <version>1.1</version>
     <packaging>jar</packaging>
     <name>spring-embedded-redis-server</name>
-    <description>依赖 Spring 容器的 Redis 内嵌小型服务器，仅做调试或测试时使用。a Redis embedded server based on Spring, Only for testing or debugging.</description>
+    <description>A tiny redis embedded server fully integrated with Spring and Spring Boot, Only for testing or debugging.</description>
     <url>https://github.com/caryyu/spring-embedded-redis-server</url>
 
     <licenses>
