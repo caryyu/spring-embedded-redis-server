@@ -42,11 +42,13 @@ public RedisServerConfiguration redisServerConfiguration(){
 }
 ```
 ## usage
+Here's two core variables to use.
 * global.redis.port - this is the embedded port for server listening.
-* global.redis.embedded - this is the switch to check whether or not it is ON/OFF.
+* global.redis.embedded - this is the switch to check whether or not it is ON/OFF.  
+
+Actually , we have lots of ways to use this library, ofcourse i really recommend you according to [Spring official Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html),so i just give some usages below.
 
 ### jvm environment variables
-Actually , we have lots of ways to use this library, ofcourse i really recommend you according to [Spring official Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html),so i just give some usages below.
   
 #### using for JavaSE
 ```
