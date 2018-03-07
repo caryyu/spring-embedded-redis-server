@@ -56,7 +56,7 @@ java -Dglobal.redis.embedded=true
 ```
 
 #### using under Tomcat 
- we need to modify catalina.sh or catalina.bat or add new file that can name "setenv.sh" etc..
+ we need to modify catalina.sh or catalina.bat or add new file that can name `setenv.sh` etc.
 ```
 set JAVA_OPTS="-Dglobal.redis.embedded=true"
 ```
