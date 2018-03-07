@@ -66,7 +66,7 @@ set JAVA_OPTS="-Dglobal.redis.embedded=true"
 global.redis.port=6379
 global.redis.embedded=true    
 ```
-### application.tml 
+### application.yml
 ```
 global:
     redis:
