@@ -31,7 +31,9 @@ public class RedisServerConfiguration implements DisposableBean, EnvironmentAwar
      * @return 端口号
      */
     public int getPort() {
-        return environment.getProperty("global.redis.port",Integer.class,6379);
+        int v = environment.getProperty("spring.redis.port",Integer.class,0);
+        v = v == 0 ? environment.getProperty("global.redis.port",Integer.class,6379) : v;
+        return v;
     }
 
     /**
@@ -39,7 +41,9 @@ public class RedisServerConfiguration implements DisposableBean, EnvironmentAwar
      * @return TRUE/FALSE
      */
     private boolean isEmbedded() {
-        return environment.getProperty("global.redis.embedded",Boolean.class,false);
+        Boolean v = environment.getProperty("spring.redis.embedded",Boolean.class,null);
+        v = v == null ? environment.getProperty("global.redis.embedded",Boolean.class,false) : v;
+        return v;
     }
 
     @Override
@@ -63,10 +67,10 @@ public class RedisServerConfiguration implements DisposableBean, EnvironmentAwar
             redisServer.start();
 
             if(log.isInfoEnabled()) {
-                log.info("开启本地嵌入式Redis服务器成功,端口:" + port);
+                log.info("Starting local embedded redis server successfully, port is " + port);
             }
         } catch (IOException e) {
-            throw new FatalBeanException("开启嵌入的Redis服务器失败.", e);
+            throw new FatalBeanException("Failed to start local embedded redis server ", e);
         }
     }
 
