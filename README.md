@@ -52,26 +52,26 @@ Actually , we have lots of ways to use this library, ofcourse i really recommend
   
 #### using for JavaSE
 ```
-java -Dglobal.redis.embedded=true
+java -Dspring.redis.embedded=true
 ```
 
 #### using under Tomcat 
  we need to modify catalina.sh or catalina.bat or add new file that can name `setenv.sh` etc.
 ```
-set JAVA_OPTS="-Dglobal.redis.embedded=true"
+set JAVA_OPTS="-Dspring.redis.embedded=true"
 ```
 
 ### application.properties
 ```
-global.redis.port=6379
-global.redis.embedded=true    
+spring.redis.port=6379
+spring.redis.embedded=true    
 ```
 ### application.yml
 ```
-global:
-    redis:
-        port: 6379
-        embedded: true
+spring:
+  redis:
+    port: 6379
+    embedded: true
 ```
 ## Contribution
 All Contributions are welcomed.
